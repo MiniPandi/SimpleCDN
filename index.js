@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const indexing = process.env.INDEXING || true;
+const indexing = process.env.INDEXING || "true";
 
 app.use(cors());
 app.use((req, res, next) => {
@@ -25,7 +25,8 @@ app.use((req, res, next) => {
         }
         let returnStr = '';
         for (let i = 0; i < files.length; i++) {
-            returnStr += `<a href="${files[i]}">${files[i]}</a><br>`;
+            let fullLink = path.join(req.path, files[i]);
+            returnStr += `<a href="${fullLink}">${files[i]}</a><br>`;
         }
         return res.send(`<a href="../">../</a><br>` + returnStr);
     }
