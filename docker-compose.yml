@@ -1,0 +1,9 @@
+services:
+  cdn:
+    build: .
+    container_name: cdn
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    volumes:
+      - ./example:/app/data
